@@ -1,0 +1,422 @@
+/* ==============================================
+   Base Styles (Common to Both Themes)
+   ============================================== */
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  padding: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emoji-header {
+  font-size: 4em;
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+h1 {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 2.5em;
+  margin-top: -10px;
+  margin-bottom: 1px;
+  transition: color 0.3s ease;
+}
+
+/* ==============================================
+     Form Styles
+     ============================================== */
+
+form {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  transition: color 0.3s ease;
+}
+
+input[type="text"],
+select {
+  width: calc(100% - 24px);
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* The following block is not used, so it was removed */
+/*
+  .checkbox-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-group label {
+    margin-left: 5px;
+  }
+  */
+
+/* ==============================================
+     Button Styles
+     ============================================== */
+
+button,
+#select-dir,
+#copy-command-button {
+  padding: 3px 6px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+  font-size: 0.8em;
+}
+
+/* ==============================================
+     Output Area Styles
+     ============================================== */
+
+#output {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#command-output {
+  padding: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* The following block is not used, so it was removed */
+/*
+  #execution-output {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #execution-result {
+    padding: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  */
+
+/* ==============================================
+     Directory Selection Styles
+     ============================================== */
+.directory-selection {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+#output-dir {
+  flex-grow: 1;
+  margin-right: 10px;
+  cursor: default;
+  padding: 12px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+#select-dir {
+  white-space: nowrap;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  align-self: flex-start;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.lightning-emoji {
+  font-size: 0.7em;
+  display: inline-block;
+}
+
+/* ==============================================
+     Light Theme Styles
+     ============================================== */
+
+body.light-theme {
+  background-color: #f0f8ff;
+  color: #333;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='dark-honeycomb' fill='%23b0e0e6' fill-opacity='0.4'%3E%3Cpath d='M21 0l20.4 12v20.5L21 44 0.6 32.5V12L21 0zM22 20.8l8.6 5v10L22 40.8 13.4 35.8v-10L22 20.8z' id='Shape'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+body.light-theme h1 {
+  color: #008080;
+}
+
+body.light-theme form {
+  background-color: #fff;
+}
+
+body.light-theme button,
+body.light-theme #select-dir,
+body.light-theme #copy-command-button {
+  background-color: #008080;
+  color: #fff;
+}
+
+body.light-theme button:hover,
+body.light-theme #select-dir:hover,
+body.light-theme #copy-command-button:hover {
+  background-color: #006666;
+}
+
+body.light-theme #output {
+  background-color: #fff;
+}
+
+body.light-theme #command-output {
+  background-color: #e0f7fa;
+  color: #333;
+}
+
+/* The following block is not used, so it was removed */
+/*
+  body.light-theme #execution-output {
+    background-color: #fff;
+  }
+  
+  body.light-theme #execution-result {
+    background-color: #e0f7fa;
+    color: #333;
+  }
+  */
+
+body.light-theme input[type="text"],
+body.light-theme select,
+body.light-theme #output-dir {
+  background-color: #fff;
+  color: #333;
+  border-color: #ccc;
+}
+
+/* ==============================================
+     Dark Theme Styles
+     ============================================== */
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='dark-honeycomb' fill='%23343434' fill-opacity='0.4'%3E%3Cpath d='M21 0l20.4 12v20.5L21 44 0.6 32.5V12L21 0zM22 20.8l8.6 5v10L22 40.8 13.4 35.8v-10L22 20.8z' id='Shape'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+body.dark-theme h1 {
+  color: #ffcc00;
+}
+
+body.dark-theme form {
+  background-color: #262626;
+}
+
+body.dark-theme button,
+body.dark-theme #select-dir,
+body.dark-theme #copy-command-button {
+  background-color: #ffcc00;
+  color: #262626;
+}
+
+body.dark-theme button:hover,
+body.dark-theme #select-dir:hover,
+body.dark-theme #copy-command-button:hover {
+  background-color: #e6b800;
+}
+
+body.dark-theme #output {
+  background-color: #262626;
+}
+
+body.dark-theme #command-output {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+/* The following block is not used, so it was removed */
+/*
+  body.dark-theme #execution-output {
+    background-color: #262626;
+  }
+  
+  body.dark-theme #execution-result {
+    background-color: #333;
+    color: #e0e0e0;
+  }
+  */
+
+body.dark-theme input[type="text"],
+body.dark-theme select,
+body.dark-theme #output-dir {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #666;
+}
+
+/* ==============================================
+     Theme Toggle Button Styles
+     ============================================== */
+.theme-toggle {
+  text-align: right;
+  margin-bottom: 10px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+#theme-toggle-button {
+  background-color: transparent;
+  color: #333;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme .theme-toggle #theme-toggle-button {
+  background-color: transparent;
+  color: #ddd;
+}
+
+#theme-toggle-button:hover {
+  background-color: transparent;
+}
+
+body.dark-theme #theme-toggle-button:hover {
+  background-color: transparent;
+}
+
+/* ==============================================
+     Output Area Header Styles
+     ============================================== */
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#copy-command-button {
+  padding: 5px 10px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+  display: none;
+}
+
+body.dark-theme #copy-command-button {
+  border-color: #666;
+}
+
+#copy-command-button:hover {
+  background-color: #bbb;
+}
+
+body.dark-theme #copy-command-button:hover {
+  background-color: #444;
+}
+
+/* ==============================================
+     Info Icon Styles
+     ============================================== */
+.info-icon {
+  cursor: pointer;
+  color: #3b82f6;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  transition: color 0.3s ease;
+  position: relative; /* Needed for top and left */
+  top: -0.3em; /* Adjust vertical position */
+  left: 0.2em; /* Adjust horizontal position */
+}
+
+.info-icon:hover {
+  color: #1d4ed8;
+}
+
+/* ==============================================
+     Explanatory Text Styles
+     ============================================== */
+.command-explanation,
+.app-explanation {
+  margin-top: 10px;
+  padding: 5px;
+  font-style: italic;
+  font-size: 0.9em;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+body.dark-theme .command-explanation,
+body.dark-theme .app-explanation {
+  color: #ddd;
+}
+
+.app-explanation {
+  /* Styles specific to app-explanation */
+  font-size: 1.05em;
+}
+
+/* ==============================================
+     Submit Button Styles
+     ============================================== */
+form button[type="submit"] {
+  margin-top: -25px;
+  padding: 12px 10px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+  font-size: 0.8em;
+  min-width: 120px;
+  white-space: pre-line;
+  text-align: center;
+  display: block; /* Added to make button block level */
+  margin-left: auto; /* Added to center horizontally */
+  margin-right: auto; /* Added to center horizontally */
+}

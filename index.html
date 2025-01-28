@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Audio Extractor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <div class="theme-toggle">
+        <button id="theme-toggle-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="moon-icon"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+      <div class="emoji-header">
+        📺<span class="lightning-emoji">⚡️</span>🔊
+      </div>
+
+      <h1>
+        YouTube Audio Extractor<span class="info-icon" id="info-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <line
+              x1="12"
+              y1="16"
+              x2="12"
+              y2="12"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <circle cx="12" cy="8" r="1" fill="currentColor" />
+          </svg>
+        </span>
+      </h1>
+      <p
+        id="app-explanation"
+        class="app-explanation"
+        style="display: none; text-align: center"
+      >
+        <b>YouTube Audio Extractor</b> generates commands for YT-dlp, an
+        open-source command-line program that can download videos and audio from
+        YouTube and other such sites. Once run, the generated commands will
+        extract the highest possible quality audio and save it as a file on your
+        device.
+        <a href="https://github.com/yt-dlp/yt-dlp#readme" target="_blank"
+          >Download the installer here</a
+        >.
+      </p>
+
+      <form id="ytdlp-form">
+        <label for="url">Enter video or playlist URL:</label>
+        <input type="text" id="url" name="url" required />
+
+        <label for="output-dir" title="This is a tooltip!"
+          >output directory:</label
+        >
+        <div class="directory-selection">
+          <input
+            type="text"
+            id="output-dir"
+            name="output-dir"
+            placeholder="ex. C:\Downloads"
+          />
+          <button type="button" id="select-dir">Select Directory</button>
+        </div>
+
+        <button type="submit">Generate Command</button>
+      </form>
+
+      <div id="output">
+        <div class="output-header">
+          <h2>YT-dlp command:</h2>
+          <button type="button" id="copy-command-button">Copy Code</button>
+        </div>
+        <pre id="command-output"></pre>
+        <p class="command-explanation" style="display: none">
+          Paste this code into your terminal and hit enter. YT-DLP will extract
+          the audio and save the file to the folder or directory you indicated.
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
