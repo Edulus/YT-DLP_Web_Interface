@@ -12,6 +12,7 @@ const elements = {
   themeToggleButton: document.getElementById("theme-toggle-button"),
   infoIcon: document.getElementById("info-icon"),
   appExplanation: document.getElementById("app-explanation"),
+  dismissButton: document.getElementById("dismiss-explanation"),
 };
 
 // ==============================================
@@ -39,7 +40,9 @@ function updateThemeIcon() {
 // ==============================================
 const sanitizeInput = (input) => {
   if (typeof input !== "string") return "";
-  return input.replace(/[;&|`$()]/g, "");
+  // Strip chars that break shell quoting even inside double quotes.
+  // & is intentionally kept so YouTube playlist URLs (?v=...&list=...) pass through.
+  return input.replace(/[;|`$()]/g, "");
 };
 
 const getDefaultOutputDirectory = () => {
@@ -116,10 +119,31 @@ elements.copyButton.addEventListener("click", async () => {
   }
 });
 
-// Directory selection handler
-elements.selectDirButton.addEventListener("click", () => {
-  const simulatedPath = "/simulated/output/directory";
-  elements.outputDirInput.value = simulatedPath;
+// Directory selection handler — uses File System Access API where available (Chrome/Edge 86+)
+elements.selectDirButton.addEventListener("click", async () => {
+  if ("showDirectoryPicker" in window) {
+    try {
+      const dirHandle = await window.showDirectoryPicker();
+      // The browser only exposes the folder name, not the full path (security model).
+      // Pre-fill the field with the name so the user can complete the path manually.
+      elements.outputDirInput.value = dirHandle.name;
+      elements.outputDirInput.title =
+        "Browser security limits access to the full path. " +
+        "Please prepend the drive/parent path before generating the command.";
+      elements.outputDirInput.focus();
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        console.error("Directory picker error:", err);
+      }
+    }
+  } else {
+    // Firefox / Safari fallback: no picker API — prompt the user to type the path
+    elements.outputDirInput.placeholder =
+      "Type the full path here, e.g. C:\\Downloads";
+    elements.outputDirInput.focus();
+    elements.selectDirButton.textContent = "Type path above";
+    elements.selectDirButton.disabled = true;
+  }
 });
 
 // Theme toggle handler
@@ -129,16 +153,27 @@ elements.themeToggleButton.addEventListener("click", () => {
   updateThemeIcon();
 });
 
-// Info icon handler
+// Info icon handler — toggles explanation regardless of dismissed state
 elements.infoIcon.addEventListener("click", () => {
-  elements.appExplanation.style.display =
-    elements.appExplanation.style.display === "block" ? "none" : "block";
+  const isVisible = elements.appExplanation.style.display === "block";
+  elements.appExplanation.style.display = isVisible ? "none" : "block";
+});
+
+// Dismiss button — remembers the choice in localStorage
+elements.dismissButton.addEventListener("click", () => {
+  elements.appExplanation.style.display = "none";
+  localStorage.setItem("explanationDismissed", "1");
 });
 
 // ==============================================
 // Initialization
 // ==============================================
 document.addEventListener("DOMContentLoaded", () => {
+  // Show explanation on first visit; hide on return visits
+  if (!localStorage.getItem("explanationDismissed")) {
+    elements.appExplanation.style.display = "block";
+  }
+
   // Set default output directory
   elements.outputDirInput.value = getDefaultOutputDirectory();
 
@@ -147,4 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize theme icon
   updateThemeIcon();
+
+  // Hide directory picker button on unsupported browsers at load time
+  if (!("showDirectoryPicker" in window)) {
+    elements.selectDirButton.textContent = "Type path above";
+    elements.selectDirButton.disabled = true;
+    elements.outputDirInput.placeholder =
+      "Type the full path here, e.g. C:\\Downloads";
+  }
 });
